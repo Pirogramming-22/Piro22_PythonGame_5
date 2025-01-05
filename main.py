@@ -8,6 +8,8 @@ from games.game_se import *
 from games.game_ek import roulette_game
 from games.game_wj import *
 from games.UpDownGame import *
+from games.Game3_JW import *
+
 
 
 
@@ -56,7 +58,7 @@ def main():
         elif gameNum == 2: # 숫자 맞추기 게임
             loser = up_down_game(participant_name, players, num_friends)
         elif gameNum == 3: # 반응속도 게임
-            loser = participant_name
+            loser = Game_3(participant_name, party_members, players)
         elif gameNum == 4: # 랜덤 룰렛 게임
             roulette_game(players)
             loser = random.choice(players)
