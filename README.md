@@ -51,6 +51,8 @@ Piro22_PythonGame_5
 - 게임 시작점
 - Player 정보 입력 및 게임 선택, 종료
 
+### setting
+
 **game_logic.py**
 
 - **play_game:** 랜덤 게임 선택 상황에서 input 관리
