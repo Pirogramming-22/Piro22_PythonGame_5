@@ -2,6 +2,7 @@ import time
 from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
+from games.UpDownGame import up_down_game
 
 def main():
     print(intro)
@@ -45,7 +46,7 @@ def main():
         if gameNum == 1: # 369게임
             loser = participant_name
         elif gameNum == 2: # 숫자 맞추기 게임
-            loser = participant_name
+            loser = up_down_game(participant_name, players, num_friends)
         elif gameNum == 3: # 반응속도 게임
             loser = participant_name
         elif gameNum == 4: # 랜덤 룰렛 게임
@@ -62,7 +63,7 @@ def main():
 
         next_game = input("\n다음 게임을 진행하시겠습니까?(끝내려면 q 입력, 계속하려면 엔터 입력): ")
         if next_game.lower() == 'q':
-            print(f"\n얘들아 {participant_name} 집간대~~ 우~~~")
+            print(f"\n얘들아 {participant_name}(이) 집간대~~ 우👎👎👎")
             print(game_over)
             break
 
