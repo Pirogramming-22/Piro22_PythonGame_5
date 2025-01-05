@@ -52,7 +52,7 @@ def main():
         elif gameNum == 2: # 숫자 맞추기 게임
             loser = up_down_game(participant_name, players, num_friends)
         elif gameNum == 3: # 반응속도 게임
-            loser = participant_name
+            loser = Game_3(participant_name, party_members, players)
         elif gameNum == 4: # 랜덤 룰렛 게임
             loser = participant_name
         else: # 아파트
