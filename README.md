@@ -66,7 +66,7 @@ Piro22_PythonGame_5
 
 **text_assets.py**
 
-- 프로그램 내에서 사용되는 ASCII ART 관리
+- 프로그램 내에서 사용되는 text 관리
 
 ### games
 

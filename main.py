@@ -4,6 +4,7 @@ from setting.party_setting import initialize_party, update_drink_status, check_g
 from setting.game_logic import play_game, except_input
 from games.UpDownGame import up_down_game
 
+
 def main():
     print(intro)
     participant_name = input("비밀 술파티에 오신 당신의 이름은? ")
@@ -63,7 +64,7 @@ def main():
 
         next_game = input("\n다음 게임을 진행하시겠습니까?(끝내려면 q 입력, 계속하려면 엔터 입력): ")
         if next_game.lower() == 'q':
-            print(f"\n얘들아 {participant_name}(이) 집간대~~ 우👎👎👎")
+            print(f"\n얘들아 {participant_name} 집간대~~ 우~~~")
             print(game_over)
             break
 
