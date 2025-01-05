@@ -1,5 +1,3 @@
-# Game3_JW : 반응 속도 테스트 게임
-
 import random
 import time
 
@@ -16,29 +14,29 @@ def print_game_over(participant_name):
     print("=" * 80)
 
 
-def print_final_results(player_name, player_drinks, player_limit, participants):
-    """최종 결과 출력 (치사량은 최소 0으로 제한)"""
-    print("~" * 50)
-    print(f"{player_name}은(는) 지금까지 {player_drinks}🍺! 치사량까지 {max(0, player_limit - player_drinks)}")
-    for participant in participants:
-        remaining_limit = max(0, participant['limit'] - participant['drinks'])
-        print(f"{participant['name']}은(는) 지금까지 {participant['drinks']}🍺! 치사량까지 {remaining_limit}")
-    print("~" * 50)
-
-
-def Game_3(player_name, player_drinks, player_limit, participants):
+def Game_3(player_name, party_members, players):
     """
-        player_name (str): 플레이어 이름
-        player_drinks (int): 플레이어가 현재까지 마신 잔 수
-        player_limit (int): 플레이어의 치사량
-        participants (list[dict]): 다른 참가자 정보 (이름과 주량)
+    player_name (str): 현재 플레이어 이름
+    party_members (dict): {이름: {"주량": int, "현재 마신 잔": int}} 형태의 참가자 정보
+    players (list): 참가자 이름 리스트
     """
+    # 플레이어 정보 추출
+    player_drinks = party_members[player_name]["현재 마신 잔"]
+    player_limit = party_members[player_name]["주량"]
+
+    # 다른 참가자 정보
+    participants = [
+        {"name": name, "drinks": info["현재 마신 잔"], "limit": info["주량"]}
+        for name, info in party_members.items()
+        if name != player_name
+    ]
+
     print(f"\n🎮 {player_name}의 반응 속도 게임 시작! 🎮")
     print("규칙: - 'GO!'가 나오면 0.5초 이내에 엔터를 입력해야 성공.")
     print("- 숫자가 나오면 2초 안에 지정된 숫자를 입력해야 성공.")
-    print("- 실패하면 술을 마시며, 한 명이라도 치사량에 도달하면 전체 게임이 종료됩니다.\n")
+    print("- 실패하면 술을 마십니다. 치사량을 초과하면 게임이 종료됩니다.\n")
 
-    # 플레이어 차례
+    # 랜덤 신호
     signal = random.choice(["GO!", "숫자"])
     wait_time = random.uniform(2, 5)
     print(f"\n[이번 순서는] {player_name}의 차례입니다. 준비...")
@@ -57,24 +55,24 @@ def Game_3(player_name, player_drinks, player_limit, participants):
             player_drinks += 1
 
     elif signal == "숫자":
-        target_number = random.randint(1, 5)  # 1~5 중 하나의 숫자 랜덤 선택
+        target_number = random.randint(1, 5)
         print(f">> (2초 안에 {target_number}을(를) 입력하세요!)")
         reaction_start = time.time()
         user_input = None
 
-        while time.time() - reaction_start < 2:
-            try:
-                user_input = input(">> ")
-                if user_input.isdigit() and int(user_input) == target_number:
-                    print(f"성공! 정확히 {target_number}을(를) 입력했습니다.")
-                    break
-            except:
-                pass
+        try:
+            user_input = input(">> ")
+        except:
+            pass
 
-        # 결과 판정
-        if user_input is None or not (user_input.isdigit() and int(user_input) == target_number):
+        if time.time() - reaction_start >= 2 or not (user_input and user_input.isdigit() and int(user_input) == target_number):
             print(f"실패! {target_number}을(를) 입력하지 않았거나 시간이 초과되었습니다.")
             player_drinks += 1
+        else:
+            print(f"성공! 정확히 {target_number}을(를) 입력했습니다.")
+
+    # 플레이어 결과 업데이트
+    party_members[player_name]["현재 마신 잔"] = player_drinks
 
     # 참가자 차례
     for participant in participants:
@@ -83,60 +81,31 @@ def Game_3(player_name, player_drinks, player_limit, participants):
         time.sleep(wait_time)
 
         if signal == "GO!":
-            print(signal)
             success = random.choice([True, False])
             if success:
                 print(f"{participant['name']} 성공! 빠르게 반응했습니다.")
             else:
                 print(f"{participant['name']} 실패! 반응이 느렸습니다.")
-                participant["drinks"] += 1
+                party_members[participant["name"]]["현재 마신 잔"] += 1
 
         elif signal == "숫자":
             target_number = random.randint(1, 5)
-            print(f">> (컴퓨터는 {target_number}을(를) 입력해야 성공입니다!)")
             success = random.choice([True, False])
             if success:
                 print(f"{participant['name']} 성공! {target_number}을(를) 정확히 입력했습니다.")
             else:
                 print(f"{participant['name']} 실패! 숫자를 잘못 입력했습니다.")
-                participant["drinks"] += 1
+                party_members[participant["name"]]["현재 마신 잔"] += 1
 
-
-        if participant["drinks"] >= participant["limit"]:
-            print_final_results(player_name, player_drinks, player_limit, participants)
+        # 치사량 확인
+        if party_members[participant["name"]]["현재 마신 잔"] > party_members[participant["name"]]["주량"]:
             print_game_over(participant["name"])
-            return None
+            return participant["name"]
 
-    # 결과 반환
-    results = {
-        "player_name": player_name,
-        "player_drinks": player_drinks,
-        "player_limit": player_limit,
-        "participants": participants,
-    }
-    return results
+    # 현재 플레이어가 치사량 초과인지 확인
+    if player_drinks > player_limit:
+        print_game_over(player_name)
+        return player_name
 
-
-# 예시 실행
-if __name__ == "__main__":
-    # 초기 데이터 설정
-    player_name = "Player"
-    player_drinks = 0
-    player_limit = 5
-    participants = [
-        {"name": "은서", "drinks": 2, "limit": 3},
-        {"name": "예진", "drinks": 0, "limit": 8},
-        {"name": "연서", "drinks": 0, "limit": 6},
-        {"name": "하연", "drinks": 3, "limit": 7},
-    ]
-
-    # 게임 실행
-    results = Game_3(player_name, player_drinks, player_limit, participants)
-
-    if results:
-        print("~" * 50)
-        print(f"{player_name}은(는) 지금까지 {player_drinks}🍺! 치사량까지 {max(0, player_limit - player_drinks)}")
-        for participant in participants:
-            remaining_limit = max(0, participant['limit'] - participant['drinks'])
-            print(f"{participant['name']}은(는) 지금까지 {participant['drinks']}🍺! 치사량까지 {remaining_limit}")
-        print("~" * 50)
+    # 패자가 없는 경우 None 반환
+    return None
