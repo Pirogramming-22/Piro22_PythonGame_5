@@ -60,8 +60,7 @@ def main():
         elif gameNum == 3: # 반응속도 게임
             loser = Game_3(participant_name, party_members, players)
         elif gameNum == 4: # 랜덤 룰렛 게임
-            roulette_game(players)
-            loser = random.choice(players)
+            loser = roulette_game(participant_name)
         else: # 아파트
             loser = apt_game(participant_name, players)
             
