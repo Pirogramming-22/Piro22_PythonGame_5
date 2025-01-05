@@ -51,12 +51,12 @@ def main():
     # participant_name - 플레이어 이름 (str)
     # party_members - {참가자 이름: 주랑, 현재 마신 잔 수} 가 저장돼있는 딕셔너리 (dic)
     # players - 참가자들 이름만 들어있는 list (list)
-    # num_friends - 게임에 참가중인 인원 (int)
+    # num_friends - 게임에 참가중인 인원이 아니라 봇들의 수 (참가 인원 -1) (int)
 
         if gameNum == 1: # 369게임
             loser = game_369(players, participant_name)
         elif gameNum == 2: # 숫자 맞추기 게임
-            loser = up_down_game(participant_name, players, num_friends)
+            loser = up_down_game(participant_name, players)
         elif gameNum == 3: # 반응속도 게임
             loser = Game_3(participant_name, party_members, players)
         elif gameNum == 4: # 랜덤 룰렛 게임

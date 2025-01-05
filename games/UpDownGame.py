@@ -2,7 +2,7 @@ import random
 import time
 from setting.text_assets import updown_logo, updown_intro
 
-def up_down_game(participant_name, players, num_players):
+def up_down_game(participant_name, players):
     print(updown_logo)
     time.sleep(2)
     print(updown_intro)
@@ -13,11 +13,11 @@ def up_down_game(participant_name, players, num_players):
     updown_turn = 0
     updown_min = 0
     updown_max = 101
-    
+    num_players = len(players)
     # 게임 시작
     while True:
         # 현재 차례의 플레이어 이름
-        updown_current_player = players[updown_turn % num_players]
+        updown_current_player = players[updown_turn]
         
         # 플레이어가 숫자를 입력
         if updown_current_player == participant_name:
@@ -54,3 +54,4 @@ def up_down_game(participant_name, players, num_players):
         time.sleep(2)
         # 다음 차례로 이동
         updown_turn += 1
+        updown_turn = updown_turn % num_players
