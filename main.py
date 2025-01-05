@@ -2,16 +2,17 @@ import time
 from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
-from games.UpDownGame import up_down_game
 from games.game_wj import *
+from games.UpDownGame import *
+
 
 def main():
     print(intro)
     participant_name = input("비밀 술파티에 오신 당신의 이름은? ")
 
     print(alcoholable_text)
-    alcoholforce = except_input("당신의 주량은 몇 잔인가요? (1~5 선택): ")
-    num_friends = except_input("함께 취할 친구는 얼마나 필요하신가요? (최대 5명): ")
+    alcoholforce = except_input("당신의 주량은 몇 잔인가요? (1~5 선택): ", 5)
+    num_friends = except_input("함께 취할 친구는 얼마나 필요하신가요? (최대 3명): ", 3)
 
     # 파티 초기화
     party_members = initialize_party(participant_name, alcoholforce, num_friends)
@@ -41,7 +42,7 @@ def main():
     
     # participant_name - 플레이어 이름 (str)
     # party_members - {참가자 이름: 주랑, 현재 마신 잔 수} 가 저장돼있는 딕셔너리 (dic)
-    # player - 참가자들 이름만 들어있는 list (list)
+    # players - 참가자들 이름만 들어있는 list (list)
     # num_friends - 게임에 참가중인 인원 (int)
   
         if gameNum == 1: # 369게임
