@@ -1,7 +1,14 @@
 #5번 아파트게임
 import random
+import time
+from setting.text_assets import apt_logo, apt_intro
 
 def apt_game(my_turn, players) :
+    print(apt_logo)
+    time.sleep(2)
+    print(apt_intro)
+    time.sleep(3)
+
     #인트로
     print("아파트~ 아파트~ 아파트~ 아파트~")  #인트로
     num_player = len(players)
@@ -34,6 +41,8 @@ def apt_game(my_turn, players) :
         calc_floor = num_player*2
     for player, hand in player_hands.items():
         if calc_floor in hand:
+            print(f"와~ {player} 걸렸다!!")
+            print(f"{player} 마셔🍺🍺")
             return player
 
 
