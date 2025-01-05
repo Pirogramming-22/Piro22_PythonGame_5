@@ -29,3 +29,45 @@
 - **1차 회의**: 01/06 00:00
 - **2차 회의**: 01/06 22:00
 - **마감**: 01/07 10:00
+
+## 파일 구조
+
+```
+Piro22_PythonGame_5
+  ├─setting
+  │  ├─game_logic.py
+  │  ├─party_setting.py
+  │  └─text_asset.py
+  ├─ games
+  │  ├─1.py
+  │  ├─UpDownGame.py
+  │  ├─3.py
+  │  ├─4.py
+  │  └─5.py
+  └─main.py
+```
+
+**game_logic.py**
+
+- **play_game:** 랜덤 게임 선택 상황에서 input 관리
+- **except_input:** 그 외 input 상황에서 예외처리 관리
+
+**party_setting.py**
+
+- **initialize_party:** 파티 초기 설정
+- **update_drink_status:** 현재 주량 출력
+- **check_game_over:** gameover 메시지 출력
+
+**text_assets.py**
+
+- 프로그램 내에서 사용되는 ASCII ART 관리
+
+### games
+
+**Updowngame.py**
+
+- 업다운 게임
+- 1~100 사이에 숫자가 정해져있다.
+- 참가자는 돌아가면서 1~100 사이의 숫자를 말한다.
+- 숫자를 말할 때마다 목표 숫자가 up인지 down인지 알 수 있다.
+- 마지막에 숫자를 맞춘 사람의 전 사람이 술을 마신다.
