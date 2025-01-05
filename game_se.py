@@ -1,12 +1,6 @@
 #5번 아파트게임
 import random
 
-#기본 정보 *수정*
-my_turn='하연'   #일단 플레리어를 하연으로 설정 *수정*
-num_player=3;   #일단 3명이 게임한다고 가정 *수정*
-players=['하연', '은서','연서']   #*수정*
-
-
 def apt_game(my_turn, num_player, players) :
     #인트로
     print("아파트~ 아파트~ 아파트~ 아파트~")  #인트로
@@ -42,8 +36,7 @@ def apt_game(my_turn, num_player, players) :
         calc_floor = num_player*2
     for player, hand in player_hands.items():
         if calc_floor in hand:
-            print(f"{player}~ 원샷!")
-            #또는 return player
+            return player
 
 
 
@@ -51,4 +44,3 @@ def apt_game(my_turn, num_player, players) :
 
 
 
-apt_game(my_turn, num_player, players)
