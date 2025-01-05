@@ -1,7 +1,7 @@
 # input manage 파일
 
 import random
-from text_assets import game_list
+from setting.text_assets import game_list
 
 # 게임 선택
 def play_game(selector, participant):
