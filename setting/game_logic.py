@@ -23,13 +23,13 @@ def play_game(selector, participant):
         return gameNum
 
 # input 예외처리
-def except_input(prompt):
+def except_input(prompt, max_num):
     while True:
         try:
             value = int(input(prompt))
-            if 1 <= value <= 5:
+            if 1 <= value <= max_num:
                 return value
             else:
-                print(f"1 ~ 5 사이의 숫자여야 합니다. 다시 입력해주세요.")
+                print(f"1 ~ {max_num} 사이의 숫자여야 합니다. 다시 입력해주세요.")
         except ValueError:
-            print(f"1~5 사이의 숫자여야 합니다. 다시 입력해주세요.")
+            print(f"1~{max_num} 사이의 숫자여야 합니다. 다시 입력해주세요.")
