@@ -1,9 +1,15 @@
 import time
+import random
 from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
-from games.UpDownGame import up_down_game
+
 from games.game_se import *
+from games.game_ek import roulette_game
+from games.game_wj import *
+from games.UpDownGame import *
+
+
 
 
 def main():
@@ -46,13 +52,14 @@ def main():
     # num_friends - 게임에 참가중인 인원 (int)
 
         if gameNum == 1: # 369게임
-            loser = participant_name
+            loser = game_369(players, participant_name)
         elif gameNum == 2: # 숫자 맞추기 게임
             loser = up_down_game(participant_name, players, num_friends)
         elif gameNum == 3: # 반응속도 게임
             loser = participant_name
         elif gameNum == 4: # 랜덤 룰렛 게임
-            loser = participant_name
+            roulette_game(players)
+            loser = random.choice(players)
         else: # 아파트
             loser = apt_game(participant_name, players)
             

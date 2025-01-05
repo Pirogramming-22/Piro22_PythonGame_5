@@ -1,32 +1,47 @@
 # 1번 369게임
 import random
 import math
-
-# 아래는 테스트를 위해서 임의로 지정해 둔 변수 (=> 병합할때 삭제예정)
-player = '규일'
-mems = ['은경','시은','주원']
-mems.append(player)
+import time
 
 # 주요 코드
-def game_369(member_list):
+def game_369(member_list, player):
+    showRule()
     print("369 ~ 369! 369 ~ 369!!")
+    time.sleep(0.5)
     num = 0 # 현재 부를 숫자 (멤버 인덱스로도 동시에 활용할 예정)
     member_count = len(member_list) # 멤버 수
     while True:
-        if not say(member_list[num%member_count], num+1):
-            print(f"이번 게임 패자 : {member_list[num%member_count]}")
+        if not say(member_list[num%member_count], num+1, player):
+            print("*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==")
+            print(f"이번 게임 패자 : {member_list[num%member_count]}\n")
+            print(f"{member_list[num%member_count]} 마셔🍺🍺")
+            print("*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==\n")
             return(member_list[num%member_count])
         else:
             num+=1
-                
-def say(member, num):
+
+def showRule():
+    print("\n------------------------------369 게임 룰------------------------------")
+    print("1. 순서대로 돌아가며 숫자를 말하거나 박수를 치는 게임이다.")
+    print("2. 숫자 3,6,9 중에 하나라도 들어있다면 들어있는 수만큼 박수를 쳐야한다.")
+    print("3. 만약 3,6,9 중에 하나라도 포함되어 있지 않다면 그냥 그 숫자를 외친다.")
+    print("4. 수는 1씩 증가하며, 숫자의 표현방법이 틀린 사람은 패배한다.")
+    print("EX1) 12에는 하나도 포함되어 있지 않기에 숫자를 그대로 말해야 한다.")
+    print("EX2) 23에는 숫자 3이 포함되어 있기에 숫자를 말하지 않고 박수를 한 번 쳐야한다.")
+    print("EX3) 63에는 숫자 6과 3, 총 2개가 포함되어 있기에 숫자를 말하지 않고 박수를 두 번 쳐야한다.")
+    print("------------------------------------------------------------------------\n")
+    time.sleep(0.5)
+
+def say(member, num, player):
     response = ''
     if member == player:
         response = playerTurn(num)
         print(f"{member} : {response}")
+        time.sleep(0.5)
     else:
         response = computerTurn(num)
         print(f"{member} : {response}")
+        time.sleep(0.5)
     return(isCorrect(num,response))
 
 
@@ -101,5 +116,3 @@ def isCorrect(num, response):    # 말한 대답이 옳은 대답인지 판단�
             return(True)
         else:
             return(False)
-
-game_369(mems)
