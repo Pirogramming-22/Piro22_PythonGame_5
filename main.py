@@ -1,10 +1,16 @@
 import time
+import random
 from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
+
+from games.game_se import *
+from games.game_ek import roulette_game
 from games.game_wj import *
 from games.UpDownGame import *
 from games.Game3_JW import *
+
+
 
 
 
@@ -46,7 +52,7 @@ def main():
     # party_members - {참가자 이름: 주랑, 현재 마신 잔 수} 가 저장돼있는 딕셔너리 (dic)
     # players - 참가자들 이름만 들어있는 list (list)
     # num_friends - 게임에 참가중인 인원 (int)
-  
+
         if gameNum == 1: # 369게임
             loser = game_369(players, participant_name)
         elif gameNum == 2: # 숫자 맞추기 게임
@@ -54,9 +60,10 @@ def main():
         elif gameNum == 3: # 반응속도 게임
             loser = Game_3(participant_name, party_members, players)
         elif gameNum == 4: # 랜덤 룰렛 게임
-            loser = participant_name
+            roulette_game(players)
+            loser = random.choice(players)
         else: # 아파트
-            loser = participant_name
+            loser = apt_game(participant_name, players)
             
         party_members[loser]["현재 마신 잔"] += 1
         print(f"{loser} 한잔 마셔~")
