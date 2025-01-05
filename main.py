@@ -1,8 +1,9 @@
 import time
+import random
 from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
-from games.UpDownGame import *
+from games.UpDownGame import roulette_game
 
 
 def main():
@@ -51,7 +52,8 @@ def main():
         elif gameNum == 3: # 반응속도 게임
             loser = participant_name
         elif gameNum == 4: # 랜덤 룰렛 게임
-            loser = participant_name
+            roulette_game(players)
+            loser = random.choice(players)
         else: # 아파트
             loser = participant_name
             
