@@ -46,6 +46,10 @@ Piro22_PythonGame_5
   │  └─5.py
   └─main.py
 ```
+**main.py**
+
+- 게임 시작점
+- Player 정보 입력 및 게임 선택, 종료
 
 **game_logic.py**
 
@@ -71,3 +75,7 @@ Piro22_PythonGame_5
 - 참가자는 돌아가면서 1~100 사이의 숫자를 말한다.
 - 숫자를 말할 때마다 목표 숫자가 up인지 down인지 알 수 있다.
 - 마지막에 숫자를 맞춘 사람의 전 사람이 술을 마신다.
+
+## 참고
+- [ASCII ART 생성](https://wepplication.github.io/tools/asciiArtGen/)
+- [이모티콘 사용](https://www.emojiall.com/ko/categories/B)
