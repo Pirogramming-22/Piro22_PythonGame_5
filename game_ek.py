@@ -15,3 +15,4 @@ def roulette_game(players):
             break
         chosen = random.choice(players).strip()
         print(f"{chosen}! 한 잔 마셔~ 🍻")
+
