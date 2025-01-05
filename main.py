@@ -11,8 +11,8 @@ def main():
     participant_name = input("비밀 술파티에 오신 당신의 이름은? ")
 
     print(alcoholable_text)
-    alcoholforce = except_input("당신의 주량은 몇 잔인가요? (1~5 선택): ")
-    num_friends = except_input("함께 취할 친구는 얼마나 필요하신가요? (최대 5명): ")
+    alcoholforce = except_input("당신의 주량은 몇 잔인가요? (1~5 선택): ", 5)
+    num_friends = except_input("함께 취할 친구는 얼마나 필요하신가요? (최대 3명): ", 3)
 
     # 파티 초기화
     party_members = initialize_party(participant_name, alcoholforce, num_friends)
