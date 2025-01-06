@@ -27,11 +27,28 @@ def up_down_game(participant_name, players):
                 
                 # 범위 밖을 입력하면
                 if updown_guess <= updown_min or updown_guess >= updown_max:
+                    
                     print(f"숫자는 {updown_min+1}~{updown_max-1} 이야")
-                    continue
+                    print(f"바보샷~!~! 바보샷~!~!")
+                    print("""
+🤪 축하합니다~!! 🎉
+이 게임에서 바보가 된 사람은~~
+바로 너~!! 🏆
+바보가 고른 게임은 할 수 없어~!! 
+게임 체~인지~~!! 😝😝
+                          """)
+                    return participant_name
             except ValueError:
-                print("숫자를 말해야지!!!")
-                continue
+                print("너 취했어? 숫자를 말해야지!!!")
+                print(f"바보샷~!~! 바보샷~!~!")
+                print("""
+🤪 축하합니다~!! 🎉
+이 게임에서 바보가 된 사람은~~
+바로 너~!! 🏆
+바보가 고른 게임은 할 수 없어~!! 
+게임 체~인지~~!! 😝😝
+                          """)
+                return participant_name
         else: # 봇 차례일 때
             updown_guess = random.randint(updown_min + 1, updown_max - 1)
             print(f"{updown_current_player}: 나는 {updown_guess}!")
