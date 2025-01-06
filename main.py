@@ -90,14 +90,18 @@ def main():
         game_turn += 1
         
         # 봇 랜덤 제거
-        if random.random() < 0.1:  # 10% 확률로 봇 한 명 제거
+        if random.random() < 0.9:  # 10% 확률로 봇 한 명 제거
             bots = [name for name in players if name != participant_name]
             if bots:
                 removed_bot = random.choice(bots)
                 players.remove(removed_bot)
                 del party_members[removed_bot]
-                print(f"\n{removed_bot}: 애들아 나 엄마가 집들어오래... \n")
+                time.sleep(2)
+                print("=========================================")
+                print(f"\n\n{removed_bot}: 애들아 나 엄마가 집들어오래... \n")
+                time.sleep(2)
                 print(f"{removed_bot}이 도망갔습니다.")
+                
         
         
 
