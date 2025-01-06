@@ -5,24 +5,23 @@ from setting.text_assets import apt_logo, apt_intro
 
 def apt_game(my_turn, players) :
     print(apt_logo)
-    time.sleep(2)
+    time.sleep(1)
     print(apt_intro)
-    time.sleep(3)
+    time.sleep(2)
 
     #인트로
     print("아파트~ 아파트~ 아파트~ 아파트~")  #인트로
     num_player = len(players)
     #층수제한
-    limit_floors = (num_player*2)*5
+    limit_floors = (num_player*2)*3
     #층수 입력
     while True :
-        print("몇층~? ")
+        print(f"스겜을 위해서 최대 몇층~? {limit_floors}층!")
         target_floor = int(input(f'{my_turn} : ')) 
+        print("")
 
         if target_floor > limit_floors :
-            print(f'빠른 진행을 위해 {limit_floors}층 안에서 골라주세요~')
-        elif 0<target_floor<=num_player*2 :
-            print(f'노잼~ 더 높은 층으로~')
+            print(f'최대 {limit_floors}층이라니까~ 바보')
         elif target_floor < 0 :
             print("아파트인데 왜 음수야~ 바보")
         else:
@@ -36,7 +35,20 @@ def apt_game(my_turn, players) :
         player = players[i%num_player]
         player_hands[player].append(floor)
 
+    #배정된 층 말하기
+    floor_to_player = {floor: player for player, hand in player_hands.items() for floor in hand}
+    sorted_floors = sorted(floor_to_player.keys()) 
+
+    for i in range(1, target_floor + 1):
+        assigned_floor = (i - 1) % len(sorted_floors) + 1  
+        player = floor_to_player[sorted_floors[(i - 1) % len(sorted_floors)]]  
+        print(f"{player} : {i}층")  
+        time.sleep(0.6)
+
+    print("")
+
     calc_floor = (target_floor%(num_player*2))
+    
     if calc_floor == 0:
         calc_floor = num_player*2
     for player, hand in player_hands.items():
