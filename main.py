@@ -5,7 +5,7 @@ from setting.party_setting import initialize_party, update_drink_status, check_g
 from setting.game_logic import play_game, except_input
 
 from games.game_se import *
-from games.game_ek import roulette_game
+from games.game_ek import *
 from games.game_wj import *
 from games.UpDownGame import *
 from games.Game3_JW import *
@@ -60,7 +60,7 @@ def main():
         elif gameNum == 3: # 반응속도 게임
             loser = Game_3(participant_name, party_members, players)
         elif gameNum == 4: # 랜덤 룰렛 게임
-            loser = roulette_game(participant_name)
+            loser = roulette_game(party_members, players)
         else: # 아파트
             loser = apt_game(participant_name, players)
             
