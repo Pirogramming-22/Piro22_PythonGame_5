@@ -3,11 +3,6 @@ import time
 from setting.text_assets import game3_intro, game3_rule
 
 
-import random
-import time
-from setting.text_assets import game3_intro, game3_rule
-
-
 def Game_3(player_name, party_members):
     round_number = 1  # 라운드 번호 관리
 

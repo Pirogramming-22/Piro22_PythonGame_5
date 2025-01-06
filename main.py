@@ -1,5 +1,6 @@
 import time
 import random
+import os
 from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
@@ -98,10 +99,106 @@ def main():
                 del party_members[removed_bot]
                 time.sleep(2)
                 print("=========================================")
-                print(f"\n\n{removed_bot}: 애들아 나 엄마가 집들어오래... \n")
+                print(f"\n\n{removed_bot}: 얘들아 나 엄마가 집들어오래... \n")
                 time.sleep(2)
                 print(f"{removed_bot}이 도망갔습니다.")
                 
+        # 혼자 남았을 때 처리
+        if len(players) == 1 and players[0] == participant_name:  # 플레이어 혼자만 남은 경우
+            time.sleep(2)
+            print("\n=========================================")
+            print("\n어라... 나 혼자 남았네...\n")
+            time.sleep(3)
+
+
+            frames = [
+                """
+                    🌧️🌧️💨🌧️🌧️💨🌧️🌧️💨
+                          O      
+                         /|\\    
+                         / \\   
+                    🌲         🌲      
+                  (희미한 바람 소리만 들린다...)
+                """,
+                """
+                    🌧️💨🌧️🌧️💨🌧️🌧️💨🌧️
+                           O     
+                          /|\\    
+                          / \\   
+                    🌲         🌲      
+                  (발소리도 점점 작아진다...)
+                """,
+                """
+                    💨🌧️💨🌧️🌧️💨🌧️💨
+                            O    
+                           /|\\   
+                           / \\  
+                    🌲         🌲      
+                  (텅 빈 세상이 차갑다...)
+                """,
+                """
+                    🌧️💨🌧️🌧️💨🌧️💨🌧️💨
+                             O   
+                            /|\\  
+                            / \\ 
+                    🌲         🌲      
+                  (사라질 때조차 아무도 보지 못한다...)
+                """,
+            ]
+
+            shrinking_frames = [
+                """
+                           .
+                          /|\\
+                          / \\
+                  (조용히 비에 젖으며...)
+                """,
+                """
+                            .
+                           /|\\
+                           / \\
+                  (그림자도 흐려져 간다...)
+                """,
+                """
+                              
+                            .
+                           /|\\
+                           / \\
+                  (이제는 아무도 없다...)
+                """,
+                """
+                             
+                              
+                           .
+                  (어둠 속으로 사라짐)
+                """,
+            ]
+
+            def clear_screen():
+                os.system('cls' if os.name == 'nt' else 'clear')
+
+            # 걷는 애니메이션
+            for frame in frames:
+                clear_screen()
+                print(frame)
+                time.sleep(1.5)
+
+            # 작아지는 애니메이션
+            for frame in shrinking_frames:
+                clear_screen()
+                print(frame)
+                time.sleep(2)
+
+            # 마지막 마무리
+            clear_screen()
+            print("...")
+            time.sleep(2)
+            print("...아무도 없었다.")
+            time.sleep(2)
+
+            print(game_over)  # 게임 종료 메시지
+            break
+
         
         
 
