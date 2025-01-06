@@ -26,8 +26,8 @@ def up_down_game(participant_name, players):
                 updown_guess = int(input(f"이번 차례는 {updown_current_player}!! 숫자는?!?! : "))
                 
                 # 범위 밖을 입력하면
-                if updown_guess < updown_min or updown_guess > updown_max:
-                    print(f"숫자는 {updown_min}~{updown_max} 이야")
+                if updown_guess <= updown_min or updown_guess >= updown_max:
+                    print(f"숫자는 {updown_min+1}~{updown_max-1} 이야")
                     continue
             except ValueError:
                 print("숫자를 말해야지!!!")
