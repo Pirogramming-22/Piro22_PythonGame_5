@@ -71,10 +71,10 @@ def main():
         if isinstance(loser, list):  # 반환된 값이 리스트인 경우
             for l in loser:
                 party_members[l]["현재 마신 잔"] += 1
-                print(f"{l} 한잔 마셔~")
+                # print(f"{l} 한잔 마셔~")
         else:  # 단일 값인 경우
             party_members[loser]["현재 마신 잔"] += 1
-            print(f"{loser} 한잔 마셔~")
+            # print(f"{loser} 한잔 마셔~")
             
 
         if check_game_over(party_members):

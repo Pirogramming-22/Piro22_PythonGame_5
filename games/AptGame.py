@@ -7,7 +7,7 @@ def apt_game(my_turn, players) :
     print(apt_logo)
     time.sleep(1)
     print(apt_intro)
-    time.sleep(2)
+    time.sleep(1)
 
     #인트로
     print("아파트~ 아파트~ 아파트~ 아파트~")  #인트로
@@ -22,8 +22,26 @@ def apt_game(my_turn, players) :
 
         if target_floor > limit_floors :
             print(f'최대 {limit_floors}층이라니까~ 바보')
+            print("""
+🤪 축하합니다~!! 🎉
+이 게임에서 바보가 된 사람은~~
+바로 너~!! 🏆 
+바보가 고른 게임은 할 수 없어~!! 
+게임 체~인지~~!! 😝😝 
+            """)
+            print(f"{my_turn} 바보 마셔!")
+            return my_turn
         elif target_floor < 0 :
             print("아파트인데 왜 음수야~ 바보")
+            print("""
+🤪 축하합니다~!! 🎉
+이 게임에서 바보가 된 사람은~~
+바로 너~!! 🏆 
+바보가 고른 게임은 할 수 없어~!! 
+게임 체~인지~~!! 😝😝 
+            """)
+            print(f"{my_turn} 바보 마셔!")
+            return my_turn
         else:
             break
 
