@@ -29,8 +29,9 @@ def main():
     print("\n비밀 술파티 참가자 리스트:")
     for name, info in party_members.items():
         print(f"{name}: 주량 {info['주량']}잔")
+    time.sleep(2)
     print(gameStart)
-    time.sleep(1)
+    time.sleep(2)
 
     game_turn = 0
     players = list(party_members.keys())
@@ -91,7 +92,7 @@ def main():
         game_turn += 1
         
         # 봇 랜덤 제거
-        if random.random() < 0.9:  # 10% 확률로 봇 한 명 제거
+        if random.random() < 0.1:  # 10% 확률로 봇 한 명 제거
             bots = [name for name in players if name != participant_name]
             if bots:
                 removed_bot = random.choice(bots)
@@ -101,11 +102,11 @@ def main():
                 print("=========================================")
                 print(f"\n\n{removed_bot}: 얘들아 나 엄마가 집들어오래... \n")
                 time.sleep(2)
-                print(f"{removed_bot}이 도망갔습니다.")
+                print(f"{removed_bot}이 도망갔습니다.\n")
+                time.sleep(2)
                 
         # 혼자 남았을 때 처리
         if len(players) == 1 and players[0] == participant_name:  # 플레이어 혼자만 남은 경우
-            time.sleep(2)
             print("\n=========================================")
             print("\n어라... 나 혼자 남았네...\n")
             time.sleep(3)

@@ -5,9 +5,9 @@ from setting.text_assets import apt_logo, apt_intro
 
 def apt_game(my_turn, players) :
     print(apt_logo)
-    time.sleep(1)
+    time.sleep(2)
     print(apt_intro)
-    time.sleep(1)
+    time.sleep(2)
 
     #인트로
     print("아파트~ 아파트~ 아파트~ 아파트~")  #인트로
@@ -17,33 +17,49 @@ def apt_game(my_turn, players) :
     #층수 입력
     while True :
         print(f"스겜을 위해서 최대 몇층~? {limit_floors}층!")
-        target_floor = int(input(f'{my_turn} : ')) 
-        print("")
+        try:
+            target_floor = int(input(f'{my_turn} : '))
+            print("")
+            if target_floor > limit_floors :
+                print(f'최대 {limit_floors}층이라니까~ 바보')
+                print("""
+                🤪 축하합니다~!! 🎉
+                이 게임에서 바보가 된 사람은~~
+                바로 너~!! 🏆 
+                바보가 고른 게임은 할 수 없어~!! 
+                게임 체~인지~~!! 😝😝 
+                """)
+                print(f"{my_turn} 바보 마셔!")
+                time.sleep(1.5)
+                return my_turn
+            elif target_floor<=num_player*2 :
+                print(f'우우...다음엔 펜트하우스에 살아보자...')
+                print("""
+                🤪 축하합니다~!! 🎉
+                이 게임에서 바보가 된 사람은~~
+                바로 너~!! 🏆 
+                바보가 고른 게임은 할 수 없어~!! 
+                게임 체~인지~~!! 😝😝 
+                """)
+                print(f"{my_turn} 바보 마셔!")
+                time.sleep(1.5)
+                return my_turn
+            else:
+                break
+        except(Exception):
+                print(f"{my_turn} : 어..어...아악..! (실수로 얼타버렸다...)")
+                time.sleep(1)
+                print("""
+                🤪 축하합니다~!! 🎉
+                이 게임에서 바보가 된 사람은~~
+                바로 너~!! 🏆 
+                바보가 고른 게임은 할 수 없어~!! 
+                게임 체~인지~~!! 😝😝 
+                """)
+                time.sleep(1.5)
+                print(f"{my_turn} 바보 마셔!")
+                return my_turn
 
-        if target_floor > limit_floors :
-            print(f'최대 {limit_floors}층이라니까~ 바보')
-            print("""
-🤪 축하합니다~!! 🎉
-이 게임에서 바보가 된 사람은~~
-바로 너~!! 🏆 
-바보가 고른 게임은 할 수 없어~!! 
-게임 체~인지~~!! 😝😝 
-            """)
-            print(f"{my_turn} 바보 마셔!")
-            return my_turn
-        elif target_floor < 0 :
-            print("아파트인데 왜 음수야~ 바보")
-            print("""
-🤪 축하합니다~!! 🎉
-이 게임에서 바보가 된 사람은~~
-바로 너~!! 🏆 
-바보가 고른 게임은 할 수 없어~!! 
-게임 체~인지~~!! 😝😝 
-            """)
-            print(f"{my_turn} 바보 마셔!")
-            return my_turn
-        else:
-            break
 
     #각 플레이어에게 층수 부여 (전체 층수에서 나머지로 당첨자 선정)
     base_floor = list(range(1, (num_player*2)+1))

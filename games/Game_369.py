@@ -12,12 +12,27 @@ def game_369(member_list, player):
     num = 0 # 현재 부를 숫자 (멤버 인덱스로도 동시에 활용할 예정)
     member_count = len(member_list) # 멤버 수
     while True:
-        if not say(member_list[num%member_count], num+1, player):
+        result = say(member_list[num%member_count], num+1, player)
+        if not result:
             print("\n*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==")
             print(f"이번 게임의 패자는 {member_list[num%member_count]}!!!\n")
             print(f"{member_list[num%member_count]} 마셔🍺🍺")
             print("*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==\n")
             return(member_list[num%member_count])
+        elif result == player:
+            print("\n*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==")
+            print("369 게임에 그런게 어디있어???? 바보는 한잔 마셔~~ 바보샷🍺 바보샷🍺🍺")
+            time.sleep(1)
+            print("""
+            🤪 축하합니다~!! 🎉
+            이 게임에서 바보가 된 사람은~~
+            바로 너~!! 🏆 
+            바보가 고른 게임은 할 수 없어~!! 
+            게임 체~인지~~!! 😝😝 
+            """)
+            print("\n*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==\n")
+            time.sleep(1.5)
+            return(player)
         else:
             num+=1
 
@@ -38,8 +53,13 @@ def showRule():
 def say(member, num, player):
     response = ''
     if member == player:
-        response = playerTurn(num)
-        print(f"{member} : {response}")
+        response = playerTurn(num, player)
+        if response == num or response == "짝!" or response == "짝짝!" or response == "짝짝짝!":
+            print(f"{member} : {response}")
+        else:
+            print(f"{member} : 어..어...아악..! (실수로 얼타버렸다...)")
+            time.sleep(1)
+            return(player)
         time.sleep(0.5)
     else:
         response = computerTurn(num)
@@ -48,14 +68,12 @@ def say(member, num, player):
     return(isCorrect(num,response))
 
 
-def playerTurn(num):   # player턴에는 직접 입력을 받음
+def playerTurn(num, player):   # player턴에는 직접 입력을 받음
     while True:
         try:
             choice = int(input(f"당신의 차례입니다! 어떻게 하시겠습니까?? [ 1: (숫자{num} 외치기) | 2: (박수 한번) | 3: (박수 두번) | 4: (박수 세번) ]  : "))
         except(Exception):
-            print("그런 선택지는 없다... 1~4번 선택지에서 고르자...")
-            time.sleep(0.5)
-            continue
+            return(player)
         if choice == 1:
             return(num)
         elif choice == 2:
@@ -65,8 +83,7 @@ def playerTurn(num):   # player턴에는 직접 입력을 받음
         elif choice == 4:
             return("짝짝짝!")
         else:
-            print("그런 선택지는 없다... 1~4번 선택지에서 고르자...")
-
+            return(player)
 
 def computerTurn(num): # computer턴에는 일정 확률에 따른 대답을 함
     p = random.randint(1,100)

@@ -37,6 +37,7 @@ def up_down_game(participant_name, players):
 바보가 고른 게임은 할 수 없어~!! 
 게임 체~인지~~!! 😝😝
                           """)
+                    time.sleep(1.5)
                     return participant_name
             except ValueError:
                 print("너 취했어? 숫자를 말해야지!!!")
@@ -48,6 +49,7 @@ def up_down_game(participant_name, players):
 바보가 고른 게임은 할 수 없어~!! 
 게임 체~인지~~!! 😝😝
                           """)
+                time.sleep(1.5)
                 return participant_name
         else: # 봇 차례일 때
             updown_guess = random.randint(updown_min + 1, updown_max - 1)
