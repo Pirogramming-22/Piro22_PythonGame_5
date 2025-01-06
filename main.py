@@ -4,11 +4,11 @@ from setting.text_assets import intro, alcoholable_text, gameStart, game_over
 from setting.party_setting import initialize_party, update_drink_status, check_game_over
 from setting.game_logic import play_game, except_input
 
-from games.game_se import *
-from games.game_ek import *
-from games.game_wj import *
+from games.AptGame import *
+from games.Roulettegame import *
+from games.Game_369 import *
 from games.UpDownGame import *
-from games.Game3_JW import *
+from games.ReactQuickly import *
 
 
 
