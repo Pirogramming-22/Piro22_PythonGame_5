@@ -4,12 +4,15 @@
 import random
 import time
 from collections import Counter
+from setting.text_assets import logo_rul
 
 def roulette_game(party_members, players):
     if not players:
         print("참가자가 없습니다. 게임을 종료합니다.")
         return
 
+    print(logo_rul)
+    time.sleep(1)
     print("\n -------------------랜덤 룰렛 게임 룰--------------------")
     print("\n1. 10번 룰렛을 랜덤으로 돌린다.\n ")
     print("2. 가장 많이 걸린 사람이 술 마신다.\n")
