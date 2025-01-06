@@ -58,14 +58,24 @@ def main():
         elif gameNum == 2: # 숫자 맞추기 게임
             loser = up_down_game(participant_name, players)
         elif gameNum == 3: # 반응속도 게임
-            loser = Game_3(participant_name, party_members, players)
+            loser = Game_3(participant_name, party_members)
         elif gameNum == 4: # 랜덤 룰렛 게임
             loser = roulette_game(party_members, players)
         else: # 아파트
             loser = apt_game(participant_name, players)
             
-        party_members[loser]["현재 마신 잔"] += 1
-        print(f"{loser} 한잔 마셔~")
+        # party_members[loser]["현재 마신 잔"] += 1
+        # print(f"{loser} 한잔 마셔~")
+
+        # 다중 loser 처리
+        if isinstance(loser, list):  # 반환된 값이 리스트인 경우
+            for l in loser:
+                party_members[l]["현재 마신 잔"] += 1
+                print(f"{l} 한잔 마셔~")
+        else:  # 단일 값인 경우
+            party_members[loser]["현재 마신 잔"] += 1
+            print(f"{loser} 한잔 마셔~")
+            
 
         if check_game_over(party_members):
             print(game_over)
